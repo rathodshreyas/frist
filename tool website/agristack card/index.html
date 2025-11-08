@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Stack कार्ड जेनरेटर</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Agri Stack कार्ड </h1>
+    <p>तुमची संपूर्ण माहिती भरा आणि शेतकरी ओळखपत्र मिळवा ।</p>
+    <div class="main-container">
+        <div class="form-container">
+            <h2>माहिती भरा</h2>
+            <!-- ================ DEFAULT VALUES HAVE BEEN DRASTICALLY SHORTENED ================ -->
+            <div class="input-group">
+                <label for="nameMr">नाव (मराठी मधे):</label>
+                <input type="text" id="nameMr" placeholder="पूर्ण नाव">
+            </div>
+            <div class="input-group">
+                <label for="nameEn">Name (In English ):</label>
+                <input type="text" id="nameEn" placeholder="Full Name">
+            </div>
+            <div class="input-group">
+                <label for="dob">DOB:</label>
+                <input type="text" id="dob" placeholder="Date Of Birth">
+            </div>
+            <div class="input-group">
+                <label for="gender">Gender:</label>
+                <!-- मराठी टेक्स्ट को हटा दिया गया -->
+                <input type="text" id="gender" placeholder="Male/Female">
+            </div>
+            <div class="input-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" id="mobile" placeholder="91xxxxxxxx">
+            </div>
+            <div class="input-group">
+                <label for="farmerId">Farmer ID:</label>
+                <input type="text" id="farmerId" placeholder="0000000000">
+            </div>
+            <div class="input-group">
+                <label for="addressMr">पत्ता (मराठी मधे):</label>
+                <textarea id="addressMr" rows="2" placeholder="अर्जदाराचा पत्ता दोन ओळीपेक्षा जास्त टाकू नका."></textarea>
+            </div>
+             <div class="input-group">
+                <label for="addressEn">Address (In English ):</label>
+                <textarea id="addressEn" rows="2" placeholder="Do not enter the applicant's address in more than two lines."></textarea>
+            </div>
+            <!-- ================================================================================= -->
+            <div class="input-group">
+                <label for="photoUpload">आपले फोटो अपलोड करा:</label>
+                <input type="file" id="photoUpload" accept="image/*">
+            </div>
+            <button id="downloadBtn">कार्ड डाउनलोड करा</button>
+        </div>
+
+        <!-- === PREVIEW SECTION START === -->
+        <div class="preview-container">
+            <h2>कार्ड Preview</h2>
+            
+            <!-- यह नया DIV सिर्फ कार्ड्स को घेरेगा ताकि डाउनलोड साफ-सुथरा हो -->
+            <div id="card-to-download">
+
+                <!-- CARD FRONT (अब बाईं ओर दिखेगा) -->
+                <div class="card" id="card-front">
+                    <div class="card-header">
+                        <img src="agristack-images/agri-stack-logo.png" class="agri-logo" alt="Agri Stack Logo">
+                        <img src="agristack-images/farmer-icon.png" class="farmer-icon" alt="Farmer Icon">
+                    </div>
+                    <div class="card-body">
+                        <div class="photo-section">
+                            <img id="previewPhoto" src="https://via.placeholder.com/100x120" alt="User Photo">
+                        </div>
+                        <div class="details-section">
+                            <p><strong>नाव:</strong> <span id="previewNameMr">पूर्ण नाव</span></p>
+                            <p><strong>Name:</strong> <span id="previewNameEn">Full Name</span></p>
+                            <p><strong>DOB:</strong> <span id="previewDob">Date Of Birth</span></p>
+                            <p><strong>Gender:</strong> <span id="previewGender">Male/Female</span></p>
+                            <p><strong>Mobile:</strong> <span id="previewMobile">91xxxxxxxx</span></p>
+                        </div>
+                    </div>
+                    <div class="farmer-id-section">
+                        <strong>Farmer ID:</strong> <span id="previewFarmerId">0000000000</span>
+                    </div>
+                    <div class="card-footer">
+                        <img src="agristack-images/wheat-logo.png" class="wheat-logo" alt="Wheat">
+                        <span>फार्मर आयडी शेतकरी ओळखपत्र</span>
+                        <img src="agristack-images/wheat-logo.png" class="wheat-logo" alt="Wheat">
+                    </div>
+                </div>
+
+                <!-- CARD BACK (अब दाईं ओर दिखेगा) -->
+                <div class="card" id="card-back">
+                     <div class="card-header">
+                        <img src="agristack-images/farmer-crop-logo.png" class="farmer-crop-logo" alt="Farmer Crop Logo">
+                        <img src="agristack-images/agri-stack-logo.png" class="agri-logo" alt="Agri Stack Logo">
+                    </div>
+                     <div class="card-body-back">
+                        <div class="address-section">
+                            <p><strong>पत्ता:</strong> <span id="previewAddressMr">अर्जदाराचा पत्ता दोन ओळीपेक्षा जास्त टाकू नका.</span></p>
+                            <p><strong>Address:</strong> <span id="previewAddressEn">Do not enter the applicant's address in more than two lines.</span></p>
+                            <p class="note">Note: This card made for personal use only. Has no connection with government.</p>
+                        </div>
+                        <div class="qr-section">
+                            <div id="qrcode-container" class="qr-code"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <img src="agristack-images/wheat-logo.png" class="wheat-logo" alt="Wheat">
+                        <span>फार्मर आयडी शेतकरी ओळखपत्र</span>
+                        <img src="agristack-images/wheat-logo.png" class="wheat-logo" alt="Wheat">
+                    </div>
+                </div>
+
+            </div> <!-- #card-to-download div ends -->
+        </div>
+        <!-- === PREVIEW SECTION END === -->
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

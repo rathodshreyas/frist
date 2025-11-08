@@ -1,0 +1,355 @@
+/* --- General Styling & Font --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --light-gray: #f4f7f9;
+    --dark-gray: #333;
+    --border-color: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Main Tool Section --- */
+.tool-section {
+    padding: 4rem 0;
+}
+
+.tool-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.upload-area, .settings-area {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    flex: 1;
+}
+
+.upload-box {
+    width: 100%;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.upload-box.dragover {
+    border-color: var(--primary-color);
+    background-color: #f0f8ff;
+}
+
+#image-preview-container img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+    background-color: #a0cffa;
+    cursor: not-allowed;
+}
+
+/* --- Settings Area Form --- */
+.form-group, .form-group-inline {
+    margin-bottom: 1.2rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.form-group input[type="number"], .form-group select, input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input[type="range"] {
+    padding: 0;
+    cursor: pointer;
+}
+
+input[type="checkbox"]{
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+}
+.form-group-inline label {
+    margin-bottom: 0;
+}
+
+.form-group input:disabled, .form-group select:disabled {
+    background-color: #e9ecef;
+    opacity: 0.7;
+}
+
+.dimension-group, .size-group {
+    display: flex;
+    gap: 1rem;
+}
+.dimension-group > div, .size-group > div {
+    flex: 1;
+}
+
+/* --- NEW: Enhancement Section Styling --- */
+.enhancement-section {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+.enhancement-section h4 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+/* -------------------------------------- */
+
+.ad-placeholder {
+    height: 90px;
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    color: #999;
+    border-radius: 4px;
+}
+
+/* --- Info Sections --- */
+/* (पहले जैसा ही) */
+.info-section {
+    padding: 4rem 0;
+    text-align: center;
+}
+.info-section.gray-bg {
+    background-color: var(--light-gray);
+}
+.info-section h2 {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.step {
+    flex: 1;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer { background-color: var(--dark-gray); color: #f4f4f4; text-align: center; padding: 2rem 0; }
+@media (max-width: 768px) { .tool-container, .steps-container { flex-direction: column; } }
+/* Previous CSS remains the same... */
+
+/* --- Main Tool Section --- */
+.tool-section { padding: 4rem 0; }
+.tool-container { display: flex; gap: 2rem; align-items: flex-start; }
+.upload-area, .settings-area { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); flex: 1; }
+
+.upload-box {
+    width: 100%;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 1rem; /* Reduced padding */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    position: relative; /* IMPORTANT for loader positioning */
+    overflow: hidden;
+}
+.upload-box.dragover { border-color: #007bff; background-color: #f0f8ff; }
+
+/* --- NEW: LOADER STYLES --- */
+.loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.hidden { display: none !important; }
+/* --- END OF LOADER STYLES --- */
+
+
+#upload-prompt { text-align: center; }
+#image-preview-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#image-preview-container img {
+    max-width: 100%;
+    max-height: 330px; /* Adjust height for preview box */
+    object-fit: contain;
+}
+
+.btn-primary { /* ... same as before ... */ }
+.btn-primary:disabled { /* ... same as before ... */ }
+.settings-area h3 { margin-bottom: 1rem; }
+.form-group, .form-group-inline { margin-bottom: 1.2rem; }
+/* ... rest of the CSS is the same as the previous version ... */
+/* Previous CSS remains the same... */
+.upload-box {
+    width: 100%;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    /* margin-bottom is removed from here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- NEW: IMAGE DETAILS STYLE --- */
+.image-details {
+    margin-top: -0.25rem; /* Pull it closer to the box */
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    min-height: 36px; /* Reserve space */
+}
+/* --- END OF NEW STYLE --- */
+
+/* ... rest of the CSS is the same as the previous version ... */

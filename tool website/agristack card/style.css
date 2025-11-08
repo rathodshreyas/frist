@@ -1,0 +1,183 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 20px;
+}
+.form-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+    width: 400px;
+}
+
+/* यह बाहरी कंटेनर है जो पेज पर सफेद बैकग्राउंड और पैडिंग दिखाता है */
+.preview-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+/* यह अंदर का कंटेनर है जिसे डाउनलोड किया जाएगा। */
+#card-to-download {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* कार्ड के बीच की जगह */
+}
+
+h1 { color: #006400; }
+h2 { color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+
+/* Form Styles */
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.input-group input[type="text"], .input-group textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.input-group input[type="file"] { width: 95%; }
+textarea { resize: vertical; }
+
+button#downloadBtn {
+    width: 100%; padding: 12px; background-color: #006400;
+    color: white; border: none; border-radius: 5px;
+    cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px;
+}
+button#downloadBtn:hover { background-color: #005000; }
+
+/* Card Styling */
+.card {
+    width: 450px;
+    height: 284px;
+    background-color: #f0f9e9;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+}
+
+
+/* === YAHAN BADLAV KIYA GAYA HAI === */
+/* Flexbox 'order' की वैल्यू को बदल दिया गया है */
+#card-front {
+    order: 1; /* यह पहले (बाईं ओर) दिखाई देगा */
+}
+#card-back {
+    order: 2; /* यह बाद में (दाईं ओर) दिखाई देगा */
+}
+/* === BADLAV KHATAM === */
+
+
+/* Card Header */
+.card-header {
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.agri-logo { height: 40px; }
+.farmer-icon { height: 60px; }
+.farmer-crop-logo { height: 60px; }
+
+/* Card Body (Front) */
+.card-body {
+    display: flex;
+    padding: 0px 15px 10px 15px;
+    flex-grow: 1;
+}
+.photo-section {
+    padding-right: 15px;
+}
+#previewPhoto {
+    width: 90px;
+    height: 110px;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+.details-section p {
+    margin: 4px 0;
+    display: flex;
+    align-items: flex-start;
+}
+.details-section p strong {
+    width: 75px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+/* Card Body (Back) */
+.card-body-back {
+    display: flex;
+    padding: 10px 15px;
+    flex-grow: 1;
+    align-items: center;
+    text-align: left;
+}
+.address-section { flex: 2; line-height: 1.5; }
+.address-section p { margin: 5px 0; }
+.address-section strong { font-weight: bold; }
+.address-section .note { font-size: 11px; color: #555; margin-top: 15px; }
+.qr-section { flex: 1; text-align: right; }
+.qr-code {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-code > * {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Farmer ID & Footer */
+.farmer-id-section {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    letter-spacing: 1px;
+}
+.card-footer {
+    background-color: #006400;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px;
+    text-align: center;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.wheat-logo {
+    height: 20px;
+    filter: brightness(0) invert(1); /* Makes the logo white */
+}

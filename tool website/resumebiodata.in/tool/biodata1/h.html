@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>परिचय पत्रिका</title>
+    <!-- Importing a suitable Devanagari font for Marathi typography. If this link fails, a fallback font will be used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #7b1233; /* Dark Maroon/Red for borders and headings */
+            --secondary-color: #f7e6e9; /* Light Pink/Off-white background */
+            --text-color: #111;
+            /* Added color for Navbar/Footer */
+            --nav-footer-bg: #2563eb; 
+            --nav-footer-text: #ffffff;
+            --group-add-btn-color: #33aaff; /* Blue for new group add buttons */
+        }
+
+        body {
+            background-color: #ffffff; 
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Tiro Devanagari Marathi', 'Arial', sans-serif; 
+            font-size: 16px;
+        }
+        
+        /* Nav/Footer/Adsense Container Styles */
+        .top-level-container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            background-color: var(--nav-footer-bg);
+            color: var(--nav-footer-text);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .navbar-content {
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navbar a {
+            color: var(--nav-footer-text);
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        
+        /* FIX: Changed width to max-width and added 90% width for responsiveness */
+        .adsense-placeholder {
+            background-color: #ccc;
+            text-align: center;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px auto;
+            width: 90%; /* Changed from 960px */
+            max-width: 960px; /* Kept max-width to restrict on large screens */
+        }
+
+        .footer {
+            background-color: var(--nav-footer-bg);
+            color: var(--nav-footer-text);
+            text-align: center;
+            padding: 16px;
+            width: 100%;
+            margin-top: auto; 
+        }
+
+        /* Patrika-specific Styles */
+        .patrika-container {
+            width: 90%; /* Changed from 800px to 90% for responsiveness */
+            max-width: 800px; /* Kept a maximum size */
+            background-color: var(--secondary-color);
+            border: 5px solid var(--primary-color);
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden; 
+            margin: 20px auto; 
+            font-family: 'Tiro Devanagari Marathi', 'Mangal', 'Arial Unicode MS', sans-serif; 
+        }
+
+        /* Scrollable area for the main content */
+        .patrika-content-scroll {
+            max-height: 70vh; 
+            overflow-y: auto;
+            padding-right: 15px; 
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: auto; 
+        }
+
+        /* Ganesha Image & Buttons START (80px is fine for fixed small elements) */
+        .ganesha-image {
+            float: left;
+            width: 80px;
+            height: 80px;
+            background-color: #fff; 
+            border-radius: 50%;
+            border: 2px solid #e0b445;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            overflow: hidden;
+            margin-right: 15px;
+            position: relative;
+        }
+        
+        .ganesha-image img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+        }
+
+        .ganesha-buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .ganesha-image:hover .ganesha-buttons {
+             opacity: 1;
+        }
+        
+        .ganesha-buttons button {
+            padding: 2px 5px;
+            font-size: 0.6em;
+            cursor: pointer;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            line-height: 1;
+        }
+        /* Ganesha Image & Buttons END */
+
+        /* START: Candidate Photo Style */
+        .candidate-photo-wrapper-fix {
+            float: right; 
+            position: relative; 
+            width: 200px; 
+            height: 240px; 
+            margin: 0 0 15px 15px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .candidate-photo {
+            background-color: #fff; 
+            border: 2px solid var(--primary-color);
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            overflow: hidden;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+        }
+
+        .candidate-photo img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+        }
+        
+        .photo-buttons-container {
+            position: absolute;
+            bottom: 0; 
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid #ccc;
+        }
+
+        .photo-buttons-container button {
+            padding: 5px 10px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+        }
+        
+        .photo-buttons-container .upload-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .photo-buttons-container .remove-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .photo-toggle-btn {
+            position: absolute; 
+            top: 0;
+            right: 0;
+            padding: 2px 5px;
+            font-size: 0.8em;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #aaa;
+            border-top: none;
+            border-right: none;
+            z-index: 10; 
+        }
+        /* END: Candidate Photo Style */
+        
+        .shlok {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 0;
+            padding-top: 10px;
+            text-align: center; 
+        }
+
+        /* FIX: Reduced large fixed margins for better responsiveness */
+        .heading {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin: 5px 20px 15px 20px; /* Changed from 120px to 20px */
+            text-align: center;
+            letter-spacing: 2px;
+            border-bottom: 3px double var(--primary-color);
+            padding-bottom: 5px;
+            display: block; 
+        }
+        
+        .sub-heading {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 0 15px 0;
+        }
+
+        /* Data Layout - Fixed widths are now adapted in media queries below */
+        .data-table {
+            display: grid;
+            grid-template-columns: 30px 180px 10px 1fr 30px; /* Move, Key, Colon, Value, Delete */
+            row-gap: 8px;
+            align-items: start; 
+        }
+
+        .data-row {
+             display: contents; 
+        }
+        
+        /* ... (Move, Delete, Data-key, Data-separator, Data-value styles are unchanged and fine) ... */
+        
+        .move-btn-container {
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+        }
+
+        .move-btn {
+            background: none;
+            border: none;
+            color: #555;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            line-height: 0.8;
+            font-size: 0.8em;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        
+        .move-btn:hover {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .data-key {
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+            padding-right: 5px;
+        }
+
+        .data-separator {
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        .data-value {
+            color: var(--text-color);
+            text-align: left;
+            border: 1px solid transparent; 
+            padding: 2px;
+            min-height: 1.2em;
+            white-space: normal; 
+            word-break: break-word; 
+        }
+        
+        .data-value:focus {
+            outline: 1px dashed #aaa;
+            background-color: #fff;
+        }
+        
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 5px;
+            line-height: 1.2;
+            font-size: 1.2em;
+            text-align: center;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .delete-btn:hover {
+            opacity: 1;
+            color: red;
+        }
+        
+        /* Add Button Container (Generic Add) */
+        .add-btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Add Button (Generic Add) */
+        .add-btn {
+            padding: 8px 15px;
+            background-color: #008000; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        .add-btn:hover {
+            background-color: #006400;
+        }
+        
+        /* START: Group Specific Add Buttons */
+        .group-add-btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap; 
+        }
+        .add-grouped-btn {
+            padding: 5px 10px;
+            background-color: var(--group-add-btn-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .add-grouped-btn:hover {
+            background-color: #2a87d0;
+        }
+        /* END: Group Specific Add Buttons */
+
+        /* Family info specific styles */
+        .family-info-group .data-value span {
+            display: block;
+            min-height: 1.2em;
+        }
+        .family-info-group .data-key, .family-info-group .data-separator {
+             padding-top: 0; 
+        }
+        
+        /* Print Styles: (Unchanged, already good) */
+        .no-print {
+             display: block; 
+        }
+
+        /* --- PRINT MEDIA QUERY: (Unchanged, includes previous fix) --- */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .patrika-container {
+                /* RESET for print */
+                margin: 0 auto !important; 
+                box-shadow: none !important;
+                width: 8in !important; 
+                border: 5px solid var(--primary-color) !important; 
+                background-color: var(--secondary-color) !important;
+                -webkit-print-color-adjust: exact; 
+                color-adjust: exact;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+            }
+            .data-row .delete-btn {
+                 display: none !important;
+            }
+            .data-table {
+                 /* Remove the move button column and the delete button column from the grid layout when printing */
+                grid-template-columns: 180px 10px 1fr !important; 
+            }
+            .patrika-content-scroll {
+                max-height: none !important;
+                overflow-y: visible !important;
+                padding-right: 0 !important;
+            }
+             .data-value {
+                border: none !important;
+                padding: 0 !important;
+                background-color: transparent !important;
+            }
+            .heading {
+                border-bottom: 3px double var(--primary-color) !important; 
+                margin: 5px 0 15px 0 !important; 
+                display: block !important;
+            }
+            .photo-buttons-container, .photo-toggle-btn {
+                display: none !important;
+            }
+            
+            .candidate-photo-wrapper-fix {
+                width: 200px !important; 
+                height: 240px !important;
+                float: right !important;
+                margin: 0 0 15px 15px !important;
+                box-shadow: none !important;
+                position: relative !important; 
+            }
+
+            #candidate-photo-container {
+                border: 2px solid var(--primary-color) !important; 
+                position: static !important; 
+            }
+            
+            #candidate-img {
+                display: block !important;
+            }
+            #photo-text {
+                 display: none !important;
+            }
+            
+            .ganesha-buttons {
+                display: none !important;
+            }
+        }
+        .print-btn-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        /* ========================================================== */
+        /* RESPONSIVE CSS - MOBILE/TABLET ADJUSTMENTS                 */
+        /* ========================================================== */
+        
+        /* Tablet/Small Laptop adjustments (Max-width 768px) */
+        @media screen and (max-width: 768px) {
+            
+            .patrika-container {
+                padding: 15px; /* Thinner padding */
+            }
+            
+            /* Decrease key width to make space for content */
+            .data-table {
+                grid-template-columns: 20px 120px 10px 1fr 20px; /* Reduced Key (180->120) and button space */
+                font-size: 0.95em;
+            }
+
+            /* Adjust heading margins again */
+             .heading {
+                margin: 5px 10px 15px 10px;
+                font-size: 2em;
+            }
+        }
+        
+        /* Mobile adjustments (Max-width 480px) */
+        @media screen and (max-width: 480px) {
+            
+            /* Navbar links to prevent wrapping/overflow */
+            .navbar-content {
+                 flex-direction: column; 
+                 align-items: flex-start;
+            }
+            .navbar-content a {
+                 padding: 5px 0;
+            }
+            .navbar-content > div {
+                 display: block !important; /* Stack the links */
+            }
+
+            /* Center the photo and remove float */
+            .candidate-photo-wrapper-fix {
+                float: none; /* Remove float */
+                margin: 15px auto; /* Center the element */
+                width: 90%; /* Make photo relative to screen size */
+                max-width: 200px; /* But keep it small enough */
+                height: auto;
+                aspect-ratio: 200/240; /* Maintain aspect ratio */
+            }
+            /* Make sure inner photo takes full space */
+            .candidate-photo {
+                 position: relative; /* Change to relative to respect aspect ratio */
+            }
+
+            /* Hide Move and Delete buttons for minimal space consumption */
+            .move-btn-container, .delete-btn {
+                display: none !important;
+            }
+
+            /* Adjust grid layout to only 3 columns: Key, Separator, Value */
+            .data-table {
+                grid-template-columns: 100px 10px 1fr !important; /* Remove 1st, 4th column space */
+                font-size: 0.9em;
+            }
+            
+            /* Hide the toggle button if it interferes, or resize */
+            .photo-toggle-btn {
+                 font-size: 0.7em;
+            }
+            
+            /* Adjust group add buttons for better stacking on mobile */
+            .group-add-btn-container {
+                 justify-content: space-around;
+            }
+            .add-grouped-btn {
+                 font-size: 0.8em;
+                 padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- (Your HTML Content remains the same, no changes needed in the body) -->
+    <!-- Navbar -->
+    <nav class="navbar no-print">
+        <div class="top-level-container navbar-content">
+            <a href="#" style="font-weight: bold; font-size: 1.2em;">ResumeBiodata.in</a>
+            <div style="display: flex; align-items: center;">
+                <a href="#">Home</a>
+                <a href="#">Tools</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AdSense Placeholder -->
+    <div class="adsense-placeholder no-print">
+        AdSense Ad Placeholder (728x90)
+    </div>
+    
+   
+
+    <!-- PATRIKA CONTENT START -->
+    <div class="patrika-container">
+
+        <!-- Vertical Watermarks (Removed content as requested) -->
+        <div class="vertical-watermark-left"></div>
+        <div class="vertical-watermark-right"></div>
+
+        <div class="header clearfix">
+            <div class="ganesha-image" id="ganesha-photo-container">
+                <img id="ganesha-img" src="/tool/biodata1/image/ganesh.png" alt="श्री गणेश">
+               
+
+                <div class="ganesha-buttons no-print">
+                    <input type="file" id="ganesha-upload-input" accept="image/*" style="display:none;" onchange="handleGaneshaPhotoUpload(this)">
+                    <button class="upload-btn" onclick="document.getElementById('ganesha-upload-input').click()">अपलोड</button>
+                    <button class="remove-btn" onclick="removeGaneshaPhoto()">काढा</button>
+                </div>
+            </div>
+            
+            <p class="shlok" contenteditable="true">॥ श्री गणेशाय नमः ॥</p> 
+            <h1 class="heading" contenteditable="true">परिचय पत्रिका</h1>
+        </div>
+        
+        <!-- Scrollable content wrapper -->
+        <div class="patrika-content-scroll">
+            
+            <!-- FIX: START: Candidate Photo Wrapper (New Container to hold float and position context) -->
+            <div class="candidate-photo-wrapper-fix">
+                
+                <!-- Photo Hide/Show Toggle: MOVED OUTSIDE THE DIV being hidden, but inside the wrapper -->
+                <!-- This button is now hidden via .no-print class in media query -->
+                <button class="photo-toggle-btn no-print" onclick="toggleCandidatePhotoVisibility(this)">फोटो लपवा</button>
+                
+                <!-- The actual Photo container, which will be hidden/shown -->
+                <div class="candidate-photo" id="candidate-photo-container">
+                    <p id="photo-text">कँडीडेटचा फोटो येथे लावा</p>
+                    <img id="candidate-img"  style="display:none;">
+                    
+                    <div class="photo-buttons-container no-print">
+                        <!-- Photo Upload Input (Hidden) -->
+                        <input type="file" id="photo-upload-input" accept="image/*" style="display:none;" onchange="handleCandidatePhotoUpload(this)">
+                        
+                        <button class="upload-btn" onclick="document.getElementById('photo-upload-input').click()">
+                            फोटो अपलोड करा
+                        </button>
+                        <button class="remove-btn" onclick="removeCandidatePhoto()">
+                            फोटो काढा
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Candidate Photo Wrapper -->
+
+            <!-- Personal Information -->
+            <div class="data-table" id="personal-info-table">
+                <!-- Data Row Structure: [MOVE BUTTONS] [KEY] [SEPARATOR] [VALUE] [DELETE BUTTON] -->
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">नाव</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">श्रेयस शिवशंकर देशमुख</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                     <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जन्म तारीख</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">10/08/1994</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जन्म वेळ</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">संध्या ६ वा.</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जन्म स्थळ</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">चाकण, ता. खेड, जि. पुणे</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">उंची</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">५ फूट ९ इंच</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जन्म राशी</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">मेष</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जन्म नाव</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">गणेश</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">रक्तगट</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">B+ve</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">शिक्षण</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">M.B.B.S. M.D. (मेडीकल कॉलेज, पुणे)</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">व्यवसाय</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">डॉक्टर</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">जात</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">हिंदू - XXXX</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">देवक</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">भारद्वाज</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div> <!-- Photo float clear for next elements -->
+
+            <!-- Add Button for Personal Info -->
+            <div class="add-btn-container no-print">
+                <button class="add-btn" onclick="addNewRow('personal-info-table')">
+                    व्यक्तिगत माहिती जोडा (+)
+                </button>
+            </div>
+
+            <!-- Family Information -->
+            <h2 class="sub-heading">कौटुंबिक माहिती</h2>
+            
+            <div class="data-table family-info-group" id="family-info-table">
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">वडिलांचे नाव</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">श्री. शिवशंकर सदाशिव देशमुख (श्रेयस उद्योग समुह, पुणे)</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">आईचे नाव</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">सौ. शिवकांता शिवशंकर देशमुख (गृहिणी)</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <!-- भाऊ: Updated with group class and deleteGroupedRow -->
+                <div class="data-row group-bhau" id="bhau-row-1">
+                    <div class="move-btn-container no-print group-bhau">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-bhau')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-bhau')">▼</button>
+                    </div>
+                    <div class="data-key group-bhau">भाऊ</div>
+                    <div class="data-separator group-bhau">:</div>
+                    <div class="data-value group-bhau" contenteditable="true">चि. महेश शिवशंकर देशमुख</div>
+                    <button class="delete-btn no-print group-bhau" onclick="deleteGroupedRow(this, 'group-bhau')">X</button>
+                </div>
+                 <!-- बहीण: Updated with group class and deleteGroupedRow -->
+                <div class="data-row group-bahin" id="bahin-row-1">
+                    <div class="move-btn-container no-print group-bahin">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-bahin')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-bahin')">▼</button>
+                    </div>
+                    <div class="data-key group-bahin">बहीण</div>
+                    <div class="data-separator group-bahin">:</div>
+                    <div class="data-value group-bahin" contenteditable="true">कु. साक्षी शिवशंकर देशमुख</div>
+                    <button class="delete-btn no-print group-bahin" onclick="deleteGroupedRow(this, 'group-bahin')">X</button>
+                </div>
+                <!-- Chulate Rows (Updated with deleteGroupedRow) -->
+                <div class="data-row group-chulate" id="chulate-row-1">
+                    <div class="move-btn-container no-print group-chulate">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-chulate')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-chulate')">▼</button>
+                    </div>
+                    <div class="data-key group-chulate">चुलते</div>
+                    <div class="data-separator group-chulate">:</div>
+                    <div class="data-value group-chulate" contenteditable="true">श्री. महेश सदाशिव देशमुख</div>
+                    <button class="delete-btn no-print group-chulate" onclick="deleteGroupedRow(this, 'group-chulate')">X</button>
+                </div>
+                <div class="data-row group-chulate" id="chulate-row-2">
+                    <div class="move-btn-container no-print group-chulate">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-chulate')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-chulate')">▼</button>
+                    </div>
+                    <div class="data-key group-chulate"></div>
+                    <div class="data-separator group-chulate"></div>
+                    <div class="data-value group-chulate" contenteditable="true">श्री. रितेश सदाशिव देशमुख</div>
+                    <button class="delete-btn no-print group-chulate" onclick="deleteGroupedRow(this, 'group-chulate')">X</button>
+                </div>
+                <!-- Mama Rows (Updated with deleteGroupedRow) -->
+                <div class="data-row group-mama" id="mama-row-1">
+                    <div class="move-btn-container no-print group-mama">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-mama')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-mama')">▼</button>
+                    </div>
+                    <div class="data-key group-mama">मामा</div>
+                    <div class="data-separator group-mama">:</div>
+                    <div class="data-value group-mama" contenteditable="true">श्री. किर्तेश्वर तानाजी चव्हाण (हदगाव, ता. अहमदपूर, जि. लातूर)</div>
+                    <button class="delete-btn no-print group-mama" onclick="deleteGroupedRow(this, 'group-mama')">X</button>
+                </div>
+                <div class="data-row group-mama" id="mama-row-2">
+                    <div class="move-btn-container no-print group-mama">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-mama')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-mama')">▼</button>
+                    </div>
+                    <div class="data-key group-mama"></div>
+                    <div class="data-separator group-mama"></div>
+                    <div class="data-value group-mama" contenteditable="true">श्री. संतोष तानाजी चव्हाण (हदगाव , ता. अहमदपूर, जि. लातूर)</div>
+                    <button class="delete-btn no-print group-mama" onclick="deleteGroupedRow(this, 'group-mama')">X</button>
+                </div>
+                
+                <!-- काका: Updated with group class and deleteGroupedRow -->
+                <div class="data-row group-kaka" id="kaka-row-1">
+                    <div class="move-btn-container no-print group-kaka">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-kaka')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-kaka')">▼</button>
+                    </div>
+                    <div class="data-key group-kaka">काका</div>
+                    <div class="data-separator group-kaka">:</div>
+                    <div class="data-value group-kaka" contenteditable="true">श्री. प्रभू हरिदास जाधव (मोह्खेड, ता. परळी, जि. बीड)</div>
+                    <button class="delete-btn no-print group-kaka" onclick="deleteGroupedRow(this, 'group-kaka')">X</button>
+                </div>
+                
+                <!-- नातेवाईक: MOVED HERE as requested (after काका) -->
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">नातेवाईक</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value relative-surnames" contenteditable="true">चव्हाण, काळे, बोरटकर, देशमुख, भोसले, बोरकर, पवार, लोमटे, जाधव</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                
+                <div class="data-row">
+                    <div class="move-btn-container no-print">
+                        <button class="move-btn" onclick="moveRow(this, 'up')">▲</button>
+                        <button class="move-btn" onclick="moveRow(this, 'down')">▼</button>
+                    </div>
+                    <div class="data-key">कायमचा पत्ता</div>
+                    <div class="data-separator">:</div>
+                    <div class="data-value" contenteditable="true">मु.पो. चाकण, ता. खेड, जि. पुणे</div>
+                    <button class="delete-btn no-print" onclick="deleteRow(this)">X</button>
+                </div>
+                <!-- Sampark Rows (Updated with deleteGroupedRow) -->
+                <div class="data-row group-sampark" id="sampark-row-1">
+                    <div class="move-btn-container no-print group-sampark">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-sampark')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-sampark')">▼</button>
+                    </div>
+                    <div class="data-key group-sampark">संपर्क</div>
+                    <div class="data-separator group-sampark">:</div>
+                    <div class="data-value group-sampark" contenteditable="true">श्री. शिवशंकर सदाशिव देशमुख</div>
+                    <button class="delete-btn no-print group-sampark" onclick="deleteGroupedRow(this, 'group-sampark')">X</button>
+                </div>
+                <div class="data-row group-sampark" id="sampark-row-2">
+                    <div class="move-btn-container no-print group-sampark">
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'up', 'group-sampark')">▲</button>
+                        <button class="move-btn" onclick="moveGroupedRow(this, 'down', 'group-sampark')">▼</button>
+                    </div>
+                    <div class="data-key group-sampark"></div>
+                    <div class="data-separator group-sampark"></div>
+                    <div class="data-value group-sampark" contenteditable="true">94xxxxxxxx</div>
+                    <button class="delete-btn no-print group-sampark" onclick="deleteGroupedRow(this, 'group-sampark')">X</button>
+                </div>
+            </div>
+             
+            <!-- START: Group-Specific Add Buttons (Small Size) -->
+            <div class="group-add-btn-container no-print">
+                <button class="add-grouped-btn" onclick="addNewGroupedItem('family-info-table', 'group-bhau', 'भाऊ')">+ भाऊ</button>
+                <button class="add-grouped-btn" onclick="addNewGroupedItem('family-info-table', 'group-bahin', 'बहीण')">+ बहीण</button>
+                <button class="add-grouped-btn" onclick="addNewGroupedItem('family-info-table', 'group-chulate', 'चुलते')">+ चुलते</button>
+                <button class="add-grouped-btn" onclick="addNewGroupedItem('family-info-table', 'group-mama', 'मामा')">+ मामा</button>
+                <button class="add-grouped-btn" onclick="addNewGroupedItem('family-info-table', 'group-kaka', 'काका')">+ काका</button>
+            </div>
+            <!-- END: Group-Specific Add Buttons -->
+             
+             <!-- Add Button for Family Info (Generic Add) -->
+            <div class="add-btn-container no-print">
+                <button class="add-btn" onclick="addNewRow('family-info-table')">
+                    कौटुंबिक माहिती जोडा (+)
+                </button>
+            </div>
+        </div>
+        <!-- End of scrollable content wrapper -->
+    </div>
+    <!-- PATRIKA CONTENT END -->
+
+      <!-- Print Button Container (No-Print) -->
+    <div class="print-btn-container no-print top-level-container">
+        <button onclick="window.print()" style="padding: 10px 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em;">
+            मुद्रण करा (Print Biodata)
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer no-print">
+        <p>&copy; 2025 Resume Maker | Designed by Shreyas Rathod</p>
+    </footer>
+    
+    <script>
+        /**
+         * Returns the single .data-row container that holds the 5 grid elements.
+         * The order is: [data-row container]
+         * @param {HTMLElement} element - Any element within the target row (e.g., a move button, key, or delete button).
+         * @returns {HTMLElement|null} - The .data-row element or null if not found.
+         */
+        function getRowContainer(element) {
+            let current = element;
+            // Traverse up until the .data-row container is found
+            while (current && current.parentElement && !current.classList.contains('data-row')) {
+                current = current.parentElement;
+            }
+            
+            // If the element itself is the .data-row or we found it by traversing up
+            if (current && current.classList.contains('data-row')) {
+                return current;
+            }
+            return null;
+        }
+        
+        /**
+         * Moves a single, non-grouped row (.data-row container) up or down within the table.
+         * @param {HTMLElement} btn - The clicked move button (inside the move-btn-container).
+         * @param {string} direction - 'up' or 'down'.
+         */
+        function moveRow(btn, direction) {
+            const currentRow = getRowContainer(btn);
+            if (!currentRow) return;
+
+            const parent = currentRow.parentElement; // The data-table
+
+            if (direction === 'up') {
+                const prevRow = currentRow.previousElementSibling; 
+                
+                // Boundary Check: If no previous sibling or if it's a non-data element, stop.
+                if (!prevRow || !prevRow.classList.contains('data-row')) {
+                     // Additional check for non-data elements that might be right before the table start
+                     if (prevRow && (prevRow.classList.contains('clearfix') || prevRow.classList.contains('sub-heading'))) return;
+                     return;
+                }
+                
+                // Move the current row before the row above
+                parent.insertBefore(currentRow, prevRow); 
+
+            } else if (direction === 'down') {
+                const nextRow = currentRow.nextElementSibling; 
+                
+                // Boundary Check: If no next sibling, or if it's a non-data element, stop.
+                if (!nextRow || !nextRow.classList.contains('data-row')) {
+                     // Additional check for end-of-table elements
+                    if (nextRow && (nextRow.classList.contains('sub-heading') || nextRow.classList.contains('add-btn-container') || nextRow.classList.contains('group-add-btn-container'))) return;
+                    return;
+                }
+
+                const rowAfterNext = nextRow.nextElementSibling; 
+                
+                // Move the current row before the element after the next row (effectively swapping them)
+                parent.insertBefore(currentRow, rowAfterNext);
+            }
+        }
+
+        /**
+         * Moves a single row within a grouped set (.data-row container) up or down.
+         * @param {HTMLElement} btn - The clicked move button.
+         * @param {string} direction - 'up' or 'down'.
+         * @param {string} className - The class name identifying the group (e.g., 'group-mama').
+         */
+        function moveGroupedRow(btn, direction, className) {
+            const currentRow = getRowContainer(btn);
+            if (!currentRow || !currentRow.classList.contains(className)) return;
+
+            const parent = currentRow.parentElement;
+
+            if (direction === 'up') {
+                const prevRow = currentRow.previousElementSibling; 
+                
+                // Check if the previous element exists AND belongs to the same group
+                if (!prevRow || !prevRow.classList.contains('data-row') || !prevRow.classList.contains(className)) return;
+
+                // Move the current row before the row above
+                parent.insertBefore(currentRow, prevRow); 
+                updateGroupHeaders(parent, className); 
+
+            } else if (direction === 'down') {
+                const nextRow = currentRow.nextElementSibling; 
+                
+                // Check if the next element exists AND belongs to the same group
+                if (!nextRow || !nextRow.classList.contains('data-row') || !nextRow.classList.contains(className)) return;
+
+                const rowAfterNext = nextRow.nextElementSibling;
+                 
+                // Move the current row before the element after the next row
+                parent.insertBefore(currentRow, rowAfterNext);
+                updateGroupHeaders(parent, className);
+            }
+        }
+        
+        /**
+         * Helper function to ensure only the first row of a group has the label and colon.
+         */
+        function updateGroupHeaders(parent, className) {
+             const allRowsInGroup = parent.querySelectorAll(`.data-row.${className}`);
+             
+             if (allRowsInGroup.length === 0) return;
+
+             // Get the label (e.g., 'भाऊ') from the class name
+             const label = className === 'group-bhau' ? 'भाऊ' : 
+                           className === 'group-bahin' ? 'बहीण' : 
+                           className === 'group-chulate' ? 'चुलते' :
+                           className === 'group-mama' ? 'मामा' :
+                           className === 'group-kaka' ? 'काका' :
+                           className === 'group-sampark' ? 'संपर्क' : '';
+             
+             // 1. Reset all keys/separators
+             allRowsInGroup.forEach(row => {
+                 const key = row.querySelector('.data-key');
+                 const separator = row.querySelector('.data-separator');
+                 if(key) key.textContent = '';
+                 if(separator) separator.textContent = '';
+             });
+
+             // 2. Set the header only for the actual first row
+             const firstKey = allRowsInGroup[0].querySelector('.data-key');
+             const firstSeparator = allRowsInGroup[0].querySelector('.data-separator');
+             
+             if(firstKey) firstKey.textContent = label;
+             if(firstSeparator) firstSeparator.textContent = ':';
+        }
+
+        /**
+         * Function to delete a single row from the data table.
+         * @param {HTMLElement} btn - The clicked delete button.
+         */
+        function deleteRow(btn) {
+            if (!confirm("तुम्ही हा पॉइंट नक्की काढू इच्छिता?")) return;
+            
+            const rowContainer = getRowContainer(btn); 
+            if (rowContainer) {
+                 rowContainer.parentElement.removeChild(rowContainer);
+            }
+        }
+
+        /**
+         * Function to delete a single row from a grouped set (and update header if necessary).
+         * @param {HTMLElement} btn - The clicked delete button.
+         * @param {string} className - The class name identifying the group (e.g., 'group-mama').
+         */
+        function deleteGroupedRow(btn, className) {
+             if (!confirm("तुम्ही ही ओळ नक्की काढू इच्छिता?")) return;
+
+             const rowContainer = getRowContainer(btn);
+             if (!rowContainer) return;
+             
+             // Check if the deleted row was the first item in the group
+             const isFirstItem = rowContainer.querySelector('.data-key').textContent.trim() !== '';
+
+             rowContainer.parentElement.removeChild(rowContainer);
+             
+             // If the deleted row was the first item, update the next row's key/separator if it exists
+             if (isFirstItem) {
+                 updateGroupHeaders(rowContainer.parentElement, className);
+             }
+        }
+
+        /**
+         * Function to add a new editable row to a specified table (personal or family info).
+         * @param {string} tableId - The ID of the data table (e.g., 'personal-info-table').
+         */
+        function addNewRow(tableId) {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+
+            const newRow = document.createElement('div');
+            newRow.className = 'data-row';
+
+            // 1. Move Button Container
+            const moveContainerDiv = document.createElement('div');
+            moveContainerDiv.className = 'move-btn-container no-print';
+            moveContainerDiv.innerHTML = `<button class="move-btn" onclick="moveRow(this, 'up')">▲</button><button class="move-btn" onclick="moveRow(this, 'down')">▼</button>`;
+
+            // 2. Data Key (Label)
+            const keyDiv = document.createElement('div');
+            keyDiv.className = 'data-key';
+            keyDiv.textContent = 'नवीन मुद्दा'; 
+            keyDiv.setAttribute('contenteditable', 'true'); 
+
+            // 3. Data Separator (Colon)
+            const separatorDiv = document.createElement('div');
+            separatorDiv.className = 'data-separator';
+            separatorDiv.textContent = ':';
+
+            // 4. Data Value (Content)
+            const valueDiv = document.createElement('div');
+            valueDiv.className = 'data-value';
+            valueDiv.textContent = 'माहिती येथे जोडा'; 
+            valueDiv.setAttribute('contenteditable', 'true');
+
+            // 5. Delete Button (for the new row)
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn no-print';
+            deleteBtn.textContent = 'X';
+            deleteBtn.setAttribute('onclick', 'deleteRow(this)');
+            
+            // Append the 5 elements to the new .data-row container
+            newRow.appendChild(moveContainerDiv);
+            newRow.appendChild(keyDiv);
+            newRow.appendChild(separatorDiv);
+            newRow.appendChild(valueDiv);
+            newRow.appendChild(deleteBtn);
+            
+            // Append the new .data-row container to the table
+            table.appendChild(newRow);
+        }
+        
+        /**
+         * Function to add a new editable row to a specified table using a group class.
+         * @param {string} tableId - The ID of the data table (e.g., 'family-info-table').
+         * @param {string} groupName - The class name for the group (e.g., 'group-mama').
+         * @param {string} groupLabel - The label for the group (e.g., 'मामा').
+         */
+        function addNewGroupedItem(tableId, groupName, groupLabel) {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+
+            // 1. Check if the group already exists
+            const existingRowsInGroup = table.querySelectorAll(`.data-row.${groupName}`);
+            const isFirstEntry = existingRowsInGroup.length === 0;
+
+            let elementToInsertAfter = null;
+
+            if (!isFirstEntry) {
+                 // CASE 1: Subsequent entry. Insert after the last row of the group
+                elementToInsertAfter = existingRowsInGroup[existingRowsInGroup.length - 1];
+            } else {
+                // CASE 2: First entry of a group. Find the element to insert after 
+                
+                let previousGroupOrKey = null;
+                // Logic based on the current order for Family Info Table
+                if (groupName === 'group-bhau') previousGroupOrKey = 'आईचे नाव';
+                else if (groupName === 'group-bahin') previousGroupOrKey = 'group-bhau';
+                else if (groupName === 'group-chulate') previousGroupOrKey = 'group-bahin';
+                else if (groupName === 'group-mama') previousGroupOrKey = 'group-chulate';
+                else if (groupName === 'group-kaka') previousGroupOrKey = 'group-mama';
+                else if (groupName === 'group-sampark') previousGroupOrKey = 'कायमचा पत्ता'; 
+                
+                if (previousGroupOrKey) {
+                    if (previousGroupOrKey.startsWith('group-')) {
+                        const prevGroupItems = table.querySelectorAll(`.data-row.${previousGroupOrKey}`);
+                        if (prevGroupItems.length > 0) {
+                            elementToInsertAfter = prevGroupItems[prevGroupItems.length - 1];
+                        }
+                    } else {
+                        // Find the previous single row
+                        const prevKeyEl = table.querySelector(`.data-row:not([class*="group-"]) .data-key[contenteditable="true"][textContent^="${previousGroupOrKey}"]`);
+                        if (prevKeyEl) {
+                           elementToInsertAfter = getRowContainer(prevKeyEl);
+                        }
+                    }
+                }
+                
+                // Special case for 'नातेवाईक' being before 'कायमचा पत्ता' (handled as a simple row)
+                if (!elementToInsertAfter && groupName === 'group-sampark') {
+                     const natveikKey = table.querySelector(`.data-row .data-key[contenteditable="true"][textContent="नातेवाईक"]`);
+                     if (natveikKey) {
+                        elementToInsertAfter = getRowContainer(natveikKey);
+                     }
+                }
+            }
+            
+            // 2. Create the new .data-row container
+            const newRow = document.createElement('div');
+            newRow.className = `data-row ${groupName}`;
+
+            // Create 5 inner elements
+            
+            // Move Button Container
+            const moveContainerDiv = document.createElement('div');
+            moveContainerDiv.className = `move-btn-container no-print ${groupName}`;
+            moveContainerDiv.innerHTML = `<button class="move-btn" onclick="moveGroupedRow(this, 'up', '${groupName}')">▲</button><button class="move-btn" onclick="moveGroupedRow(this, 'down', '${groupName}')">▼</button>`;
+
+            // Data Key (Label)
+            const keyDiv = document.createElement('div');
+            keyDiv.className = 'data-key ' + groupName;
+            keyDiv.textContent = isFirstEntry ? groupLabel : ''; 
+            
+            // Data Separator (Colon)
+            const separatorDiv = document.createElement('div');
+            separatorDiv.className = 'data-separator ' + groupName;
+            separatorDiv.textContent = isFirstEntry ? ':' : ''; 
+
+            // Data Value (Content)
+            const valueDiv = document.createElement('div');
+            valueDiv.className = 'data-value ' + groupName;
+            valueDiv.textContent = `येथे नवीन ${groupLabel} माहिती जोडा`; 
+            valueDiv.setAttribute('contenteditable', 'true');
+
+            // Delete Button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn no-print ' + groupName;
+            deleteBtn.textContent = 'X';
+            deleteBtn.setAttribute('onclick', `deleteGroupedRow(this, '${groupName}')`);
+
+            // Append inner elements
+            newRow.appendChild(moveContainerDiv);
+            newRow.appendChild(keyDiv);
+            newRow.appendChild(separatorDiv);
+            newRow.appendChild(valueDiv);
+            newRow.appendChild(deleteBtn);
+
+            // 3. Insert the new row
+            if (elementToInsertAfter) {
+                 elementToInsertAfter.insertAdjacentElement('afterend', newRow);
+            } else {
+               // Fallback: Append to the end of the table
+               table.appendChild(newRow);
+            }
+        }
+        
+        /* START: Photo Upload/Remove Functions */
+        
+        /** Ganesha Photo Handlers **/
+        function handleGaneshaPhotoUpload(input) {
+            const file = input.files[0];
+            const imgElement = document.getElementById('ganesha-img');
+            const textElement = document.getElementById('ganesha-img-placeholder');
+            const container = document.getElementById('ganesha-photo-container');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    textElement.style.display = 'none';
+                    container.style.justifyContent = 'flex-end'; // Align content to the bottom for the buttons
+                };
+                reader.readAsDataURL(file);
+            } else {
+                removeGaneshaPhoto();
+            }
+        }
+
+        function removeGaneshaPhoto() {
+             const imgElement = document.getElementById('ganesha-img');
+             const textElement = document.getElementById('ganesha-img-placeholder');
+             const container = document.getElementById('ganesha-photo-container');
+
+             imgElement.src = '';
+             imgElement.style.display = 'none';
+             textElement.style.display = 'block';
+             container.style.justifyContent = 'center'; // Center text again
+             
+             // Reset the visibility in case it was hidden
+             container.style.visibility = 'visible';
+             container.style.width = '80px';
+             container.style.height = '80px';
+             document.querySelector('#ganesha-photo-container .remove-btn').textContent = 'काढा';
+             
+             // Clear file input
+             document.getElementById('ganesha-upload-input').value = '';
+        }
+        
+        function hideGaneshaPhoto() {
+             const container = document.getElementById('ganesha-photo-container');
+             const hideBtn = document.querySelector('#ganesha-photo-container .remove-btn');
+
+
+             if(container.style.visibility === 'hidden') {
+                 // Show
+                 container.style.visibility = 'visible';
+                 container.style.width = '80px';
+                 container.style.height = '80px';
+                 hideBtn.textContent = 'लपवा';
+             } else {
+                 // Hide
+                 container.style.visibility = 'hidden';
+                 container.style.width = '0';
+                 container.style.height = '0';
+                 hideBtn.textContent = 'दाखवा';
+             }
+        }
+
+        /** Candidate Photo Handlers **/
+        function handleCandidatePhotoUpload(input) {
+            const file = input.files[0];
+            const imgElement = document.getElementById('candidate-img');
+            const textElement = document.getElementById('photo-text');
+            // FIX: Ensure the photo container is visible if a new photo is uploaded
+            const container = document.getElementById('candidate-photo-container'); 
+            const toggleBtn = document.querySelector('.photo-toggle-btn'); 
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    textElement.style.display = 'none'; 
+                    
+                    // Show photo if it was hidden
+                    container.style.display = 'flex';
+                    toggleBtn.textContent = 'फोटो लपवा';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                 removeCandidatePhoto();
+            }
+        }
+
+        function removeCandidatePhoto() {
+            const imgElement = document.getElementById('candidate-img');
+            const textElement = document.getElementById('photo-text');
+            const fileInput = document.getElementById('photo-upload-input');
+            
+            imgElement.src = '';
+            imgElement.style.display = 'none';
+            textElement.style.display = 'block'; 
+            
+            if (fileInput) {
+                fileInput.value = '';
+            }
+        }
+        
+        /** 
+         * Toggles the visibility of the candidate photo container and updates the button text. 
+         */
+        function toggleCandidatePhotoVisibility(btn) {
+            // Target is the inner container which holds the photo/text/buttons
+            const container = document.getElementById('candidate-photo-container'); 
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'flex'; // Show the container
+                btn.textContent = 'फोटो लपवा';
+            } else {
+                container.style.display = 'none'; // Hide the container
+                btn.textContent = 'फोटो दाखवा';
+            }
+        }
+        /* END: Photo Upload/Remove Functions */
+        
+    </script>
+</body>
+</html>

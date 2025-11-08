@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Biodata Maker - resumebiodata.in</title>
+<meta name="description" content="Create professional Resume and Biodata, and edit photos online for free. ResumeBiodata.in offers a suite of free, easy-to-use tools for job seekers and individuals.">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxx" crossorigin="anonymous"></script>
+
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* Fade-in + slide-up animation */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.tool-card {
+  perspective: 1000px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s forwards;
+}
+.tool-card:nth-child(1) { animation-delay: 0.1s; }
+.tool-card:nth-child(2) { animation-delay: 0.2s; }
+.tool-card:nth-child(3) { animation-delay: 0.3s; }
+.tool-card:nth-child(4) { animation-delay: 0.4s; }
+.tool-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Flip + scale on hover/tap */
+.tool-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.tool-card:hover .tool-card-inner,
+.tool-card.hover .tool-card-inner { 
+  transform: rotateY(180deg) scale(1.05);
+}
+
+.tool-card-front, .tool-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  transition: box-shadow 0.3s ease;
+}
+.tool-card-front { box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+.tool-card:hover .tool-card-front,
+.tool-card.hover .tool-card-front {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.tool-card-back { 
+  transform: rotateY(180deg); 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.tool-card:hover .tool-card-back,
+.tool-card.hover .tool-card-back {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<header class="bg-blue-600 shadow">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold text-white">ResumeBiodata.in</h1>
+    <div class="md:hidden">
+      <button id="nav-toggle" class="text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <nav id="nav-menu" class="hidden md:flex space-x-6 text-white font-medium">
+      <a href="#" class="hover:text-yellow-300">Home</a>
+      <a href="#tools" class="hover:text-yellow-300">Tools</a>
+      <a href="#about" class="hover:text-yellow-300">About</a>
+      <a href="#contact" class="hover:text-yellow-300">Contact</a>
+      <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
+      <a href="blog.html" class="hover:text-yellow-300">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<section class="bg-blue-500 text-white py-16 px-6">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Free Resume, Biodata & Photo Tools</h2>
+    <p class="mt-4 text-base sm:text-lg md:text-xl">Create Resume, Marriage Biodata, Edit Photos & more - 100% Free</p>
+    <a href="#tools" class="mt-6 inline-block bg-yellow-400 text-blue-800 font-semibold px-6 py-3 rounded-lg shadow hover:bg-yellow-300">Explore Tools</a>
+  </div>
+</section>
+
+<div class="container mx-auto my-6 px-6">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section id="tools" class="py-16 container mx-auto px-6">
+  <h3 class="text-2xl sm:text-3xl font-bold text-center mb-10 text-blue-600">Our Free Tools</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/resume-icon.png" alt="Resume Builder" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Resume Builder</h4>
+        </div>
+        <div class="tool-card-back bg-blue-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Create professional job resumes in minutes.</p>
+          <a href="/resume builder/resumefrontpage.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/biodata-icon.png" alt="Biodata Maker" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Biodata Maker</h4>
+        </div>
+        <div class="tool-card-back bg-green-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Generate marriage & job biodata with templates.</p>
+          <a href="/biodatabuilder/biodatafrontpage.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/resizer-icon.png" alt="Online Image Resizer & Compressor" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Online Image Resizer & Compressor</h4>
+        </div>
+        <div class="tool-card-back bg-purple-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Resize photos to required dimensions (px, cm, mm).</p>
+          <a href="/tool/Online Image Resizer & Compressor/imageresizer.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/combine-icon.png" alt="Photo & Signature Joiner Tool" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Photo & Signature Joiner Tool</h4>
+        </div>
+        <div class="tool-card-back bg-red-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Combine photo and signature into one image.</p>
+          <a href="/tool/Photo & Signature Joiner Tool.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/editor-icon.png" alt="#" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Advanced Photo Editor</h4>
+        </div>
+        <div class="tool-card-back bg-yellow-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Edit, crop & enhance your photos online.</p>
+          <a href="/tool/Advanced Photo Editor/Advanced Photo Editor.html.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tool-card h-64 sm:h-72" ontouchstart="this.classList.toggle('hover')">
+      <div class="tool-card-inner relative w-full h-full">
+        <div class="tool-card-front bg-white shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <img src="images/signatureeditor-icon.png" alt="advanced signature editor" class="w-14 sm:w-16 mb-3">
+          <h4 class="text-lg sm:text-xl font-semibold mb-2 text-center">Advanced Signature Editor</h4>
+        </div>
+        <div class="tool-card-back bg-yellow-100 shadow flex flex-col items-center justify-center p-6 absolute w-full h-full">
+          <p class="mb-3 text-center text-sm sm:text-base">Edit, crop & enhance your signature online.</p>
+          <a href="/tool/Advanced Signature Editor/Advanced Signature Editor.html" class="bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base">Open Tool</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="container mx-auto my-6 px-6">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="2222222222" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section id="about" class="py-16 container mx-auto px-6">
+  <h3 class="text-3xl font-bold text-center mb-6 text-blue-600">About Us</h3>
+  <p class="text-center max-w-2xl mx-auto">ResumeBiodata.in is your one-stop free platform for Resume, Biodata, and essential photo tools. 100% free, easy-to-use, and Adsense friendly design.</p>
+</section>
+
+<section id="contact" class="py-16 bg-gray-100">
+  <div class="container mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
+    <p>Email: support@resumebiodata.in</p>
+  </div>
+</section>
+
+<footer class="bg-blue-600 text-white py-6 mt-16">
+  <div class="container mx-auto px-6 text-center">
+    <p class="mb-4">&copy; 2025 ResumeBiodata.in | All Rights Reserved.</p>
+    <div class="my-4">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="flex justify-center space-x-4 mt-4">
+      <a href="#" class="hover:text-yellow-300">Home</a>
+      <a href="#tools" class="hover:text-yellow-300">Tools</a>
+      <a href="#about" class="hover:text-yellow-300">About</a>
+      <a href="#contact" class="hover:text-yellow-300">Contact</a>
+      <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
+      <a href="blog.html" class="hover:text-yellow-300">Blog</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar toggle for mobile
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+navToggle.addEventListener('click', () => { navMenu.classList.toggle('hidden'); });
+</script>
+
+</body>
+</html>

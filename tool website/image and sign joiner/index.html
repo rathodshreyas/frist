@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo and Signature Joiner Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Photo & Sign Joiner</h1>
+        <p>आसानी से फोटो और सिग्नेचर जोड़ें, क्रॉप करें और डाउनलोड करें</p>
+    </header>
+
+    <main class="container">
+    <div class="main-layout">
+        <!-- Left Column for Controls -->
+        <div class="controls-column">
+            
+            <div class="tool-section">
+                <!-- Step 1 & 2: Uploads -->
+                <div class="upload-area">
+                    <div class="upload-box">
+                        <h3>1. अपनी फोटो अपलोड करें</h3>
+                        <input type="file" id="photoInput" accept="image/*">
+                        <div class="image-preview-container">
+                            <img id="photoPreview" src="#" alt="Photo Preview">
+                        </div>
+                    </div>
+                    <div class="upload-box">
+                        <h3>2. अपना सिग्नेचर अपलोड करें</h3>
+                        <input type="file" id="signInput" accept="image/*">
+                        <div class="image-preview-container">
+                            <img id="signPreview" src="#" alt="Signature Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <!-- Controls Area -->
+                <div class="controls-area">
+                    <h3>3. इमेज एडजस्टमेंट</h3>
+                    
+                    <h4 class="control-subtitle">फोटो एडजस्टमेंट</h4>
+                    <div class="control-group">
+                        <label for="brightness">फोटो की ब्राइटनेस:</label>
+                        <input type="range" id="brightness" min="0" max="200" value="100">
+                    </div>
+                    <div class="control-group">
+                        <label for="contrast">फोटो का कंट्रास्ट:</label>
+                        <input type="range" id="contrast" min="0" max="200" value="100">
+                    </div>
+                
+                    <h4 class="control-subtitle">सिग्नेचर एडजस्टमेंट</h4>
+                    <div class="control-group">
+                        <label for="signBrightness">सिग्नेचर की ब्राइटनेस:</label>
+                        <input type="range" id="signBrightness" min="0" max="200" value="100">
+                    </div>
+                    <div class="control-group">
+                        <label for="signContrast">सिग्नेचर का कंट्रास्ट:</label>
+                        <input type="range" id="signContrast" min="0" max="200" value="100">
+                    </div>
+
+                    <div class="dimension-controls">
+                        <h4 class="control-subtitle">4. फाइनल इमेज का साइज (पिक्सेल में)</h4>
+                        <div class="control-group">
+                            <label for="outputWidth">चौड़ाई (Width):</label>
+                            <input type="number" id="outputWidth" value="350" placeholder="e.g., 350">
+                        </div>
+                        <div class="control-group">
+                            <label for="outputHeight">फोटो की ऊंचाई (Photo Height):</label>
+                            <input type="number" id="outputHeight" value="450" placeholder="e.g., 450">
+                        </div>
+                        <div class="control-group">
+                            <label for="outputSignHeight">सिग्नेचर की ऊंचाई (Sign Height):</label>
+                            <input type="number" id="outputSignHeight" value="80" placeholder="e.g., 80">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column for Preview -->
+        <div class="preview-column">
+            <div class="preview-section">
+                <h2>फाइनल प्रीव्यू</h2>
+                <canvas id="resultCanvas"></canvas>
+                <button id="generateBtn" class="btn">Generate & Preview</button>
+                <button id="downloadBtn" class="btn btn-success">Download Joined Image</button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+    <footer>
+        <p>© 2024 Your Website Name. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

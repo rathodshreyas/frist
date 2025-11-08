@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- LEFT COLUMN - THE FORM -->
+        <div class="form-container">
+            <h1>Resume Builder</h1>
+            <p>Fill in the details to create your professional resume.</p>
+
+            <!-- Header Details Section -->
+            <div class="form-section">
+                <h2>Header Details</h2>
+                <input type="text" id="name" placeholder="Full Name (e.g., Waghmare Bhaiyasaheb Gautam)">
+                <input type="text" id="address" placeholder="Address (e.g., Row House Colony, sakud road, Ambajogai)">
+                <input type="text" id="city" placeholder="District & Pin Code (e.g., Dist. Beed pin 431517)">
+                <input type="email" id="email" placeholder="Email ID">
+                <input type="tel" id="phone" placeholder="Phone Number(s)">
+            </div>
+
+            <!-- Personal Details Section -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <input type="text" id="sex" placeholder="Sex (e.g., Male)">
+                <input type="text" id="dob" placeholder="Date of Birth (DD/MM/YYYY)">
+                <input type="text" id="maritalStatus" placeholder="Marital Status (e.g., Married)">
+                <input type="text" id="nationality" placeholder="Nationality (e.g., Indian)">
+                <input type="text" id="languages" placeholder="Languages (e.g., English, Hindi & Marathi)">
+            </div>
+
+            <!-- Education Section -->
+            <div class="form-section">
+                <h2>Education</h2>
+                <div id="education-list"></div>
+                <button type="button" class="add-btn" id="add-education-btn">Add Education</button>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="form-section">
+                <h2>Experience</h2>
+                <div id="experience-list"></div>
+                <button type="button" class="add-btn" id="add-experience-btn">Add Experience</button>
+            </div>
+
+            <!-- Computer Skills Section -->
+            <div class="form-section">
+                <h2>Computer Skill</h2>
+                <textarea id="skills" placeholder="Describe your computer skills in a sentence. (e.g., I have completed basic computer course...)"></textarea>
+            </div>
+            
+            <!-- Final Details Section -->
+            <div class="form-section">
+                <h2>Footer Details</h2>
+                <input type="text" id="place" placeholder="Place">
+                <input type="text" id="date" placeholder="Date">
+            </div>
+            
+            <button type="button" id="download-pdf-btn">Download as PDF</button>
+        </div>
+
+        <!-- RIGHT COLUMN - THE RESUME PREVIEW (DESIGNED TO BE IDENTICAL TO THE IMAGE) -->
+        <div class="resume-preview-container">
+            <div id="resume-preview">
+                <!-- Header -->
+                 <div class="header-center">
+                        <h1>Resume</h1>
+                    </div>
+                <div class="resume-header">
+                    <div class="header-left">
+                        <h2 id="preview-name">Waghmare Bhaiyasaheb Gautam</h2>
+                        <p id="preview-address">Row House Colony, sakud road, Ambajogai.</p>
+                        <p id="preview-city">Dist. Beed pin 431517.</p>
+                    </div>
+                    
+                    <div class="header-right">
+                        <p><strong>Email. Id:</strong> <span id="preview-email">bgwaghmare07@gmail.com</span></p>
+                        <p><strong>Phone:</strong> <span id="preview-phone">9527774089/9834036919</span></p>
+                    </div>
+                </div>
+                <hr class="separator">
+
+                <!-- Personal Info -->
+                <div class="resume-personal-details">
+                    <div class="detail-item"><span class="detail-label">Sex:</span><span id="preview-sex">Male</span></div>
+                    <div class="detail-item"><span class="detail-label">Date of Birth:</span><span id="preview-dob">05/09/1990</span></div>
+                    <div class="detail-item"><span class="detail-label">Marital status:</span><span id="preview-maritalStatus">Married</span></div>
+                    <div class="detail-item"><span class="detail-label">Nationality:</span><span id="preview-nationality">Indian</span></div>
+                    <div class="detail-item"><span class="detail-label">Languages:</span><span id="preview-languages">English, Hindi & Marathi.</span></div>
+                </div>
+
+                <!-- Education -->
+                <div class="resume-section">
+                    <h3>EDUCATION:</h3>
+                    <table id="preview-education-table">
+                        <thead>
+                            <tr>
+                                <th>Name of Exam</th>
+                                <th>Board</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-section">
+                    <h3>Experience:</h3>
+                    <ol id="preview-experience-list"></ol>
+                </div>
+
+                <!-- Computer Skill -->
+                <div class="resume-section">
+                    <h3>Computer Skill:-</h3>
+                    <p id="preview-skills"></p>
+                </div>
+
+                <!-- Declaration -->
+                <div class="resume-section">
+                    <h3>Declaration -</h3>
+                    <p>I hereby declare that the information furnished above is true to the best of my Knowledge and belief.</p>
+                </div>
+                
+                <!-- Footer -->
+                <div class="resume-footer">
+                    <div class="footer-left">
+                        <p><strong>Place:</strong> <span id="preview-place"></span></p>
+                        <p><strong>Date:</strong> <span id="preview-date"></span></p>
+                    </div>
+                    <div class="footer-right">
+                        <p id="preview-footer-name" class="signature">Waghmare Bhaiyasaheb Gautam</p>
+                        <p>Yours Faithfully</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
