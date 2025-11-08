@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker - Shreyas Rathod</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background-color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+        }
+
+        /* Resume Specific Styles */
+        .resume-container {
+            max-width: 210mm;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid #d1d5db;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .page-content {
+            padding: 30px;
+        }
+        
+        /* Print Specific Styles */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .resume-container {
+                box-shadow: none !important;
+                border: none !important;
+                max-width: none;
+                width: 100%;
+                padding: 0;
+            }
+            .page-content {
+                border: 2px solid #000;
+                padding: 20px;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                box-shadow: none !important; 
+            }
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+            
+        }
+        
+
+        /* Remaining styles */
+        .section-header {
+            background-color: #e0e7ff;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bullet-point {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .bullet-point::before {
+            content: '❖';
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+        [contenteditable="true"]:hover {
+            outline: 1px solid #3b82f6;
+        }
+        .education-table td,
+        .education-table th {
+            border: 1px solid #d1d5db;
+        }
+        .action-buttons button {
+            margin-right: 5px;
+        }
+        .movable-section {
+            cursor: grab;
+        }
+        .movable-section:active {
+            cursor: grabbing;
+        }
+        .placeholder {
+            height: 50px;
+            background-color: #e0e7ff;
+            border: 2px dashed #3b82f6;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <nav class="bg-blue-600 text-white shadow-md w-full no-print">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <a href="#" class="text-white font-bold text-lg hover:text-gray-200">ResumeBiodata.in</a>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Tools</a>
+                <a href="#" class="hover:underline">About</a>
+                <a href="#" class="hover:underline">Contact</a>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto my-4 no-print">
+        <div class="bg-gray-300 text-center p-4 rounded">
+            AdSense Ad Placeholder (728x90)
+        </div>
+    </div>
+
+    <div class="resume-container mt-6" id="resume-container">
+        <div class="page-content" id="page-content">
+            <div class="text-center text-xl font-bold mb-8" contenteditable="true">RESUME</div>
+            <div class="mb-6">
+                <div class="font-bold text-lg mb-1" contenteditable="true" id="resume-name-header" onblur="updateName(this.innerText)">Name: Shreyas D. Rathod</div>
+                <p contenteditable="true">E-Mail: youremail@gmail.com</p>
+                <p contenteditable="true">Contact No: +91 94xxxxxxxx</p>
+            </div>
+            <div class="mb-6 movable-section">
+                <div class="section-header">
+                    Objective:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <p class="px-3" contenteditable="true">
+                    "To secure a challenging position in a reputable organization to expand my learnings, knowledge, and skills."
+                </p>
+            </div>
+            <div class="mb-6 movable-section" id="education-section">
+                <div class="section-header">
+                    Education Qualification:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white education-table">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="py-1 px-2 text-left">Qualification</th>
+                                <th class="py-1 px-2 text-left">College/School</th>
+                                <th class="py-1 px-2 text-left">Board/University</th>
+                                <th class="py-1 px-2 text-left">Year of Passing</th>
+                                <th class="py-1 px-2 text-left">Percentage</th>
+                                <th class="no-print py-1 px-1 text-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="education-body">
+                            <tr contenteditable="true">
+                                <td class="py-1 px-4">SSC</td>
+                                <td class="py-1 px-1">High School Name</td>
+                                <td class="py-1 px-1">Maharashtra State Board</td>
+                                <td class="py-1 px-4">2004</td>
+                                <td class="py-1 px-4">85%</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true">
+                                <td class="py-1 px-4">HSC</td>
+                                <td class="py-1 px-1">Junior College Name</td>
+                                <td class="py-1 px-1">Maharashtra State Board</td>
+                                <td class="py-1 px-4">2006</td>
+                                <td class="py-1 px-4">80%</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true">
+                                <td class="py-1 px-4">Graduation</td>
+                                <td class="py-1 px-1">College of Arts, Science & Commerce</td>
+                                <td class="py-1 px-1">Pune University</td>
+                                <td class="py-1 px-4">2010</td>
+                                <td class="py-1 px-4">75%</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="no-print mt-2">
+                    <button onclick="addEducationRow()" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Row</button>
+                </div>
+            </div>
+            <div class="mb-6 section movable-section" id="skills-section">
+                <div class="section-header">
+                    Technical Skills:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="skills-list">
+                    <li class="bullet-point" contenteditable="true">MS Office Suite
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                    <li class="bullet-point" contenteditable="true">C++
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('skills-list')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            </div>
+            <div class="mb-6 section movable-section" id="experience-section">
+                <div class="section-header">
+                    Working Experience:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="experience-list">
+                    <li class="bullet-point" contenteditable="true">Worked as a Junior Engineer at ABC Company from 2010-2015.
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('experience-list')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            </div>
+            <div class="mb-6 section movable-section" id="activity-section">
+                <div class="section-header">
+                    Extracurricular Activity:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="activity-list">
+                    <li class="bullet-point" contenteditable="true">Participated in college sports programs.
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('activity-list')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            </div>
+            <div class="mb-6 section movable-section" id="strengths-section">
+                <div class="section-header">
+                    Strengths:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="strengths-list">
+                    <li class="bullet-point" contenteditable="true">Hard-working and dedicated.
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                    <li class="bullet-point" contenteditable="true">Good problem-solving skills.
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('strengths-list')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            </div>
+            <div class="mb-6 section movable-section" id="hobbies-section">
+                <div class="section-header">
+                    Hobbies:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="hobbies-list">
+                    <li class="bullet-point" contenteditable="true">Playing cricket.
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('hobbies-list')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            </div>
+            <div class="mb-6 movable-section" id="personal-section">
+                <div class="section-header">
+                    Personal Details:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <div class="pl-3">
+                    <table class="table-auto border-collapse w-full">
+                        <tbody id="personal-body">
+                            <tr contenteditable="true" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)">
+                                <td class="pr-4 py-1 font-semibold">Mother's Name</td>
+                                <td id="mother-name-cell">: MotherName</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)">
+                                <td class="pr-4 py-1 font-semibold">Date of Birth</td>
+                                <td>: 01/01/1989</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)">
+                                <td class="pr-4 py-1 font-semibold">Gender</td>
+                                <td>: Male</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)">
+                                <td class="pr-4 py-1 font-semibold">Nationality</td>
+                                <td>: Indian</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                            <tr contenteditable="true" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)">
+                                <td class="pr-4 py-1 font-semibold align-top">Permanent address</td>
+                                <td>: At.Ambajogai, Tq.Ambajogai, Dist.Beed-431517.</td>
+                                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="no-print mt-2">
+                    <button onclick="addPersonalRow()" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Row</button>
+                </div>
+            </div>
+            <div class="no-print flex flex-col gap-2 justify-center items-center py-4">
+                <button onclick="addSection()" class="bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg">➕ Add Section</button>
+            </div>
+            <div class="mb-6 mt-12 movable-section">
+                <div class="section-header">
+                    Declaration:
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <p class="px-3" contenteditable="true">
+                    I hereby declare that all the information provided above is true and correct to the best of my knowledge and belief.
+                </p>
+            </div>
+            <div class="flex justify-between items-end mt-12 px-3">
+                <div>
+                    <p><b>Date :</b> <span id="today-date" contenteditable="true"></span></p>
+                    <p contenteditable="true">Place: Ambajogai</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-center">Sign</p>
+                    <p class="text-center" contenteditable="true" id="signature-name" onblur="updateName(this.innerText)">(Shreyas D. Rathod)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-print flex flex-col gap-2 justify-center items-center py-4">
+        <button onclick="printResume()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg">🖨️ Print Resume</button>
+    </div>
+
+    <footer class="bg-blue-600 text-white text-center p-4 mt-6 w-full no-print">
+        <p>&copy; 2025 Resume Maker | Designed by Shreyas Rathod</p>
+    </footer>
+
+    <script>
+        // General helper functions
+        function addItem(listId) {
+            const ul = document.getElementById(listId);
+            if (!ul) return;
+            const li = document.createElement("li");
+            li.className = "bullet-point";
+            li.setAttribute("contenteditable", "true");
+            li.innerHTML = `New Item <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>`;
+            ul.appendChild(li);
+        }
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+        function removeSection(button) {
+            if (confirm("Are you sure you want to delete this section?")) {
+                button.closest('.movable-section').remove();
+            }
+        }
+        function addEducationRow() {
+            const table = document.getElementById("education-body");
+            const newRow = document.createElement("tr");
+            newRow.setAttribute("contenteditable", "true");
+            newRow.innerHTML = `
+                <td class="py-2 px-4">New Qualification</td>
+                <td class="py-2 px-1">College/School</td>
+                <td class="py-2 px-1">Board/University</td>
+                <td class="py-2 px-4">Year</td>
+                <td class="py-2 px-4">Marks</td>
+                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+            `;
+            table.appendChild(newRow);
+        }
+        function addPersonalRow() {
+            const table = document.getElementById("personal-body");
+            const newRow = document.createElement("tr");
+            newRow.setAttribute("contenteditable", "true");
+            newRow.setAttribute("draggable", "true");
+            newRow.setAttribute("ondragstart", "handleDragStart(event)");
+            newRow.setAttribute("ondragover", "handleDragOver(event)");
+            newRow.setAttribute("ondrop", "handleDrop(event)");
+            newRow.setAttribute("ondragend", "handleDragEnd(event)");
+            newRow.innerHTML = `
+                <td class="pr-4 py-1 font-semibold">New Field</td>
+                <td>: Value</td>
+                <td class="no-print"><button onclick="removeRow(this)" class="text-red-500">❌</button></td>
+            `;
+            table.appendChild(newRow);
+        }
+        function removeRow(button) {
+            button.closest("tr").remove();
+        }
+        // Add Section functionality
+        function addSection() {
+            const pageContent = document.getElementById('page-content');
+            const declarationSection = pageContent.querySelector('.movable-section.mt-12');
+            const newSection = document.createElement("div");
+            newSection.className = "mb-6 section movable-section";
+            const sectionId = "new-section-" + Date.now();
+            newSection.innerHTML = `
+                <div class="section-header">
+                    <span contenteditable="true">New Section</span>
+                    <button onclick="removeSection(this)" class="no-print text-red-500 text-sm">❌</button>
+                </div>
+                <ul class="list-none pl-3" id="${sectionId}">
+                    <li class="bullet-point" contenteditable="true">New Item
+                        <button onclick="removeItem(this)" class="no-print text-red-500 ml-2">❌</button>
+                    </li>
+                </ul>
+                <div class="no-print action-buttons mt-2">
+                    <button onclick="addItem('${sectionId}')" class="bg-green-500 text-white px-2 py-1 rounded">➕ Add Item</button>
+                </div>
+            `;
+            pageContent.insertBefore(newSection, declarationSection);
+            makeSectionsMovable();
+        }
+
+        // Drag-and-drop for sections
+        let draggedSection = null;
+        function makeSectionsMovable() {
+            const sections = document.querySelectorAll('.movable-section');
+            sections.forEach(section => {
+                section.setAttribute('draggable', 'true');
+                section.removeEventListener('dragstart', handleSectionDragStart);
+                section.removeEventListener('dragover', handleSectionDragOver);
+                section.removeEventListener('drop', handleSectionDrop);
+                section.removeEventListener('dragend', handleSectionDragEnd);
+                section.addEventListener('dragstart', handleSectionDragStart);
+                section.addEventListener('dragover', handleSectionDragOver);
+                section.addEventListener('drop', handleSectionDrop);
+                section.addEventListener('dragend', handleSectionDragEnd);
+            });
+        }
+        function handleSectionDragStart(e) {
+            draggedSection = this;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.outerHTML);
+            this.style.opacity = '0.4';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder';
+            draggedSection.parentNode.insertBefore(placeholder, draggedSection.nextSibling);
+        }
+        function handleSectionDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            const target = e.target.closest('.movable-section');
+            if (target && target !== draggedSection) {
+                const rect = target.getBoundingClientRect();
+                const midpoint = rect.top + rect.height / 2;
+                const placeholder = document.querySelector('.placeholder');
+                if (e.clientY < midpoint) {
+                    target.parentNode.insertBefore(draggedSection, target);
+                } else {
+                    target.parentNode.insertBefore(draggedSection, target.nextSibling);
+                }
+            }
+        }
+        function handleSectionDrop(e) {
+            e.preventDefault();
+        }
+        function handleSectionDragEnd(e) {
+            this.style.opacity = '1';
+            draggedSection = null;
+            const placeholder = document.querySelector('.placeholder');
+            if (placeholder) {
+                placeholder.remove();
+            }
+        }
+        // Drag-and-drop for personal details rows
+        let draggedRow = null;
+        function handleDragStart(e) {
+            draggedRow = e.target.closest('tr');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        function handleDragOver(e) {
+            e.preventDefault();
+            const target = e.target.closest('tr');
+            if (target && target !== draggedRow) {
+                const rect = target.getBoundingClientRect();
+                const mid = rect.top + rect.height / 2;
+                if (e.clientY < mid) {
+                    target.parentNode.insertBefore(draggedRow, target);
+                } else {
+                    target.parentNode.insertBefore(draggedRow, target.nextSibling);
+                }
+            }
+        }
+        function handleDrop(e) {
+            e.preventDefault();
+        }
+        function handleDragEnd() {
+            draggedRow = null;
+        }
+
+        // Function to update name across the resume
+        function updateName(newName) {
+            const cleanedName = newName.replace("Name:", "").replace("(", "").replace(")", "").trim();
+            document.getElementById('resume-name-header').innerText = `Name: ${cleanedName}`;
+            document.getElementById('signature-name').innerText = `(${cleanedName})`;
+        }
+
+        // हे printResume() फंक्शन तुमच्या "🖨️ Print Resume" बटणासाठी आहे
+        function printResume() {
+            window.print();
+        }
+
+        // Initialize movable sections and rows on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            makeSectionsMovable();
+            const today = new Date();
+            const formattedDate = String(today.getDate()).padStart(2,'0') + '-' +
+                                  String(today.getMonth() + 1).padStart(2,'0') + '-' +
+                                  today.getFullYear();
+            document.getElementById("today-date").innerText = formattedDate;
+        });
+    </script>
+</body>
+</html>

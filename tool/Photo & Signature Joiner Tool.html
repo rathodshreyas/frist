@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo & Signature Joiner - ResumeBiodata.in</title>
+
+    <meta name="description" content="Free online tool to combine photo and signature for job applications, forms, and more. Easily resize, crop, and download your combined image.">
+    <meta name="keywords" content="photo signature joiner, combine photo and sign, photo sign resizer, online photo tools, resume biodata tools">
+    <meta name="author" content="Shreyas Rathod">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxx" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        input[type=range] {
+            width: 100%;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+        canvas {
+            max-width: 100%;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .left-column {
+            /* no scroll, auto height */
+        }
+        .sticky-preview {
+            position: sticky;
+            top: 20px;
+        }
+        /* Custom Tailwind widths if not already defined in config */
+        .w-7\/10 {
+            width: 70%;
+        }
+        .w-3\/10 {
+            width: 30%;
+        }
+        @media (min-width: 1024px) { /* Equivalent to Tailwind's 'lg' breakpoint */
+            .lg\:w-7\/10 {
+                width: 70%;
+            }
+            .lg\:w-3\/10 {
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-blue-600 shadow">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <h1 class="text-2xl font-bold text-white">ResumeBiodata.in</h1>
+            <nav class="hidden md:flex space-x-6 text-white font-medium">
+                <a href="index.html" class="hover:text-yellow-300">Home</a>
+                <a href="/index.html" class="hover:text-yellow-300">Tools</a>
+                <a href="about.html" class="hover:text-yellow-300">About</a>
+                <a href="contact.html" class="hover:text-yellow-300">Contact</a>
+                <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
+                <a href="blog.html" class="hover:text-yellow-300">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-blue-500 text-white py-12 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold">Photo & Signature Joiner Tool</h2>
+        <p class="mt-2 sm:mt-4 text-base sm:text-lg">Easily join, crop, and download photos and signatures</p>
+    </section>
+
+    <div class="container mx-auto my-6 px-6">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <main class="container mx-auto py-10 px-6">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="lg:w-7/10 left-column space-y-6"> 
+                
+                <div class="bg-white shadow rounded-lg p-4 space-y-3">
+                    <h3 class="text-lg font-semibold">1. Image Adjustments</h3>
+                    <div>
+                        <h4 class="font-medium">Photo Adjustment</h4>
+                        <label>Brightness</label>
+                        <input type="range" id="brightness" min="0" max="200" value="100">
+                        <label>Contrast</label>
+                        <input type="range" id="contrast" min="0" max="200" value="100">
+                    </div>
+                    <div>
+                        <h4 class="font-medium mt-3">Signature Adjustment</h4>
+                        <label>Brightness</label>
+                        <input type="range" id="signBrightness" min="0" max="200" value="100">
+                        <label>Contrast</label>
+                        <input type="range" id="signContrast" min="0" max="200" value="100">
+                    </div>
+                    <div>
+                        <h4 class="font-medium mt-3">2. Final Image Size (pixels)</h4>
+                        <div class="flex gap-2">
+                            <div class="flex-1">
+                                <label>Width</label>
+                                <input type="number" id="outputWidth" value="350" class="w-full border rounded px-2 py-1">
+                            </div>
+                            <div class="flex-1">
+                                <label>Photo Height</label>
+                                <input type="number" id="outputHeight" value="350" class="w-full border rounded px-2 py-1">
+                            </div>
+                            <div class="flex-1">
+                                <label>Signature Height</label>
+                                <input type="number" id="outputSignHeight" value="80" class="w-full border rounded px-2 py-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow rounded-lg p-4 space-y-3">
+                    <h3 class="text-lg font-semibold">3. Upload Your Photo</h3>
+                    <input type="file" id="photoInput" accept="image/*">
+                    <img id="photoPreview" src="#" alt="Photo Preview" style="display:none;">
+                    <h3 class="text-lg font-semibold mt-4">4. Upload Your Signature</h3>
+                    <input type="file" id="signInput" accept="image/*">
+                    <img id="signPreview" src="#" alt="Signature Preview" style="display:none;">
+                </div>
+                
+            </div>
+
+            <div class="lg:w-3/10"> 
+                <div class="bg-white shadow rounded-lg p-4 sticky-preview">
+                    <h3 class="text-lg font-semibold mb-3">Final Preview</h3>
+                    <canvas id="resultCanvas"></canvas>
+                    <button id="downloadBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">Download Joined Image</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="container mx-auto my-6 px-6">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="2222222222" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <footer class="bg-blue-600 text-white py-6 mt-10">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">&copy; 2025 ResumeBiodata.in | All Rights Reserved.</p>
+            <div class="my-4">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p class="text-sm mt-2">Unauthorized copying or distribution of this code is prohibited.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script>
+        (function(){
+            var a=document.getElementById("photoInput"),
+                b=document.getElementById("signInput"),
+                c=document.getElementById("photoPreview"),
+                d=document.getElementById("signPreview"),
+                e=document.getElementById("brightness"),
+                f=document.getElementById("contrast"),
+                g=document.getElementById("signBrightness"),
+                h=document.getElementById("signContrast"),
+                i=document.getElementById("outputWidth"),
+                j=document.getElementById("outputHeight"),
+                k=document.getElementById("outputSignHeight"),
+                m=document.getElementById("downloadBtn"),
+                n=document.getElementById("resultCanvas"),
+                o=n.getContext("2d");
+
+            let p,q,r=!1; // p for photoCropper, q for signCropper
+
+            function s(){
+                if(!p||!q)return!1;
+
+                const t=parseInt(i.value)||350,
+                      u=parseInt(j.value)||350,
+                      v=parseInt(k.value)||80;
+
+                const w=p.getCroppedCanvas();
+                const x=q.getCroppedCanvas();
+
+                if(!w||!x)return!1;
+
+                n.width=t;
+                n.height=u+v+10;
+                
+                o.fillStyle="white";
+                o.fillRect(0,0,n.width,n.height);
+
+                o.filter=`brightness(${e.value}%) contrast(${f.value}%)`;
+                o.drawImage(w,0,0,t,u);
+
+                o.filter=`brightness(${g.value}%) contrast(${h.value}%)`;
+                o.drawImage(x,0,u+5,t,v);
+
+                o.filter="none";
+                r=!0;
+                return!0;
+            }
+
+            for(let y of[e,f,g,h,i,j,k])y&&y.addEventListener("input",s);
+
+            a.addEventListener("change",e=>{
+                if(p)p.destroy();
+                let f1=e.target.files[0];
+                if(!f1)return;
+                let g1=new FileReader;
+                g1.onload=function(e){
+                    c.src=e.target.result;
+                    c.style.display="block";
+                    p=new Cropper(c,{
+                        viewMode:1,
+                        minCropBoxWidth: 150, // फोटोसाठी कमी केलेली रुंदी
+                        minCropBoxHeight: 200, // फोटोसाठी कमी केलेली उंची
+                        crop: s
+                    });
+                    s(); // Call s() after photo is loaded and cropped
+                };
+                g1.readAsDataURL(f1);
+            });
+
+            b.addEventListener("change",e=>{
+                if(q)q.destroy();
+                let f1=e.target.files[0];
+                if(!f1)return;
+                let g1=new FileReader;
+                g1.onload=function(e){
+                    d.src=e.target.result;
+                    d.style.display="block";
+                    q=new Cropper(d,{
+                        viewMode:1,
+                        minCropBoxWidth: 150, // सिग्नेचरसाठी कमी केलेली रुंदी
+                        minCropBoxHeight: 50, // सिग्नेचरसाठी कमी केलेली उंची
+                        crop: s
+                    });
+                    s(); // Call s() after signature is loaded and cropped
+                };
+                g1.readAsDataURL(f1);
+            });
+
+            m.addEventListener("click",()=>{
+                if(!r){
+                    alert("Please upload both photo and signature first, and ensure the images are visible in the preview.");
+                    return;
+                }
+                let e=document.createElement("a");
+                e.download="Photo-Sign-Joined.jpg";
+                e.href=n.toDataURL("image/jpeg",.95);
+                e.click();
+            });
+
+            s();
+        })();
+    </script>
+</body>
+</html>
