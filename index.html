@@ -78,10 +78,9 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         padding: 1rem 0;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         z-index: 10;
-        /* Added for vertical alignment */
         display: flex; /* Ensure it's a flex container */
         justify-content: center; /* Center items vertically */
-        align-items: center; /* Center items horizontally (if needed, though flex-direction column makes this less critical) */
+        align-items: center; /* Center items horizontally */
     }
     #nav-menu a {
         padding: 0.75rem 1.5rem;
@@ -92,15 +91,22 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     #nav-menu.hidden {
         display: none;
     }
+    /* Ensure the toggle button is always on the far right on mobile */
+    .mobile-menu-container {
+        display: flex;
+        justify-content: flex-end; /* Align the button to the end (right) */
+        flex-grow: 1; /* Allow this container to grow and push to the right */
+    }
 }
 </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<header class="bg-blue-600 shadow relative"> <!-- Added relative for absolute positioning of nav-menu -->
+<header class="bg-blue-600 shadow relative">
   <div class="container mx-auto flex justify-between items-center py-4 px-6">
     <h1 class="text-2xl font-bold text-white">ResumeBiodata.in</h1>
-    <div class="md:hidden">
+    <!-- Modified this div for correct alignment -->
+    <div class="mobile-menu-container md:hidden">
       <button id="nav-toggle" class="text-white focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
