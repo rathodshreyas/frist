@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Marathi Biodata Maker</title>
+  <meta name="description" content="Free Marathi Biodata Maker वापरून लग्नासाठी योग्य मराठी बायोडाटा तयार करा.">
+  <style>
+    body { font-family: Arial; max-width: 900px; margin: auto; padding: 20px; line-height: 1.7; }
+    input, button { width: 100%; padding: 10px; margin: 6px 0; }
+    button { background: #2563eb; color: #fff; border: none; cursor: pointer; }
+    #output { white-space: pre-wrap; background: #f3f3f3; padding: 15px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+<h1>Free Marathi Biodata Maker</h1>
+
+<p>
+मराठी बायोडाटा हा लग्नासाठी अत्यंत महत्त्वाचा असतो.
+खालील Free Tool वापरून तुम्ही सहजपणे सुंदर आणि सभ्य मराठी बायोडाटा तयार करू शकता.
+</p>
+
+<h2>माहिती भरा</h2>
+
+<input id="name" placeholder="नाव">
+<input id="age" placeholder="वय">
+<input id="education" placeholder="शिक्षण">
+<input id="occupation" placeholder="व्यवसाय">
+<input id="address" placeholder="पत्ता">
+
+<button onclick="generate()">Generate Biodata</button>
+
+<div id="output"></div>
+
+<button onclick="download()">Download Biodata</button>
+
+<script>
+async function generate() {
+  const res = await fetch("/api/marathi-biodata", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: name.value,
+      age: age.value,
+      education: education.value,
+      occupation: occupation.value,
+      address: address.value
+    })
+  });
+
+  const data = await res.json();
+  document.getElementById("output").innerText = data.biodata;
+}
+
+function download() {
+  const text = document.getElementById("output").innerText;
+  const blob = new Blob([text], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "marathi-biodata.txt";
+  a.click();
+}
+</script>
+
+</body>
+</html>
