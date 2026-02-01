@@ -1,0 +1,13 @@
+{
+  "name": "resume-builder-serverless",
+  "version": "1.0.0",
+  "description": "Serverless function for generating PDF resumes",
+  "scripts": {
+    "start": "node api/generate.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^21.0.0",
+    "@sparticuz/chromium": "^119.0.0"
+  },
+  "devDependencies": {}
+}
